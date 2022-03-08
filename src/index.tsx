@@ -1,12 +1,19 @@
+import Stats from './stats'
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Cookie from './Cookie';
 import './index.css';
 import App from './App';
+import Login from './login'
 import reportWebVitals from './reportWebVitals';
+Stats.print()
 
+let isLoggedIn = Boolean( Cookie.parse(document.cookie).object.get("user"))
+//@ts-ignore
+window.Cookie = Cookie;
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {isLoggedIn ? <App /> : <Login />}
   </React.StrictMode>,
   document.getElementById('root')
 );
